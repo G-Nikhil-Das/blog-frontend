@@ -13,6 +13,7 @@ const BlogDetails = () => {
   const [ismyBlog, setisMyBlog] = useState(false)
   const [comment, setComment] = useState('')
   const userInfo = useSelector((state)=>state.auth.userInfo)
+  const isLoggedIn = useSelector((state)=>state.auth.isLoggedIn)
 
   const fetchBlogDetails = async() => {
     const response = await fetch(`${BACKEND_URL}/blog/${id}`)
@@ -83,7 +84,7 @@ const BlogDetails = () => {
               ))}
             </div>
           )}
-          {!ismyBlog && <div className="text-left place-items-start"> 
+          {!ismyBlog && isLoggedIn && <div className="text-left place-items-start"> 
             <div className="flex min-w-0 gap-x-4 my-4">
               <UserCircleIcon className="mx-auto h-12 w-12" aria-hidden="true" />
               <div className="min-w-0 flex-auto">
